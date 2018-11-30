@@ -1,0 +1,6 @@
+{
+    "dev": {
+        "s3_bucket": "dsw88-zappa-test",
+        "app_function": "index.app"
+    }
+}

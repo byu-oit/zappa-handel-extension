@@ -1,0 +1,11 @@
+version: 1
+
+name: zappa-flask
+
+extensions:
+  zappa: zappa-handel-extension
+
+environments:
+  dev:
+    webapp:
+      type: zappa::flask
