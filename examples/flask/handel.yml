@@ -9,3 +9,15 @@ environments:
   dev:
     webapp:
       type: zappa::flask
+      path_to_code: .
+      handler: index.app
+      memory: 128
+      runtime: python3.6
+      timeout: 60
+      vpc: true
+      environment_variables:
+        TEST_ENV_VAR: helloworld
+      dependencies:
+      - bucket
+    bucket:
+      type: s3

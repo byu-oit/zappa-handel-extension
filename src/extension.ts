@@ -17,7 +17,7 @@
 import {
     ExtensionContext,
 } from 'handel-extension-api';
-import { FlaskService } from './service';
+import { FlaskService } from './flask/service';
 
 export function loadHandelExtension(context: ExtensionContext) {
     context.service('flask', new FlaskService());

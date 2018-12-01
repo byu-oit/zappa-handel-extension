@@ -15,6 +15,15 @@
  *
  */
 import * as childProcess from 'child_process';
+import * as fs from 'fs';
+
+export function writeFile(path: string, fileContents: string) {
+    fs.writeFileSync(path, fileContents);
+}
+
+export async function writeJsonFile(path: string, obj: any) {
+    writeFile(path, JSON.stringify(obj, null, 2));
+}
 
 export async function runCommand(cmd: string, params: string[], printStdout: boolean = false, printStderr: boolean = false) {
     return new Promise((resolve, reject) => {
