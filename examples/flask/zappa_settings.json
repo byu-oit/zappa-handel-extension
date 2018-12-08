@@ -1,6 +1,6 @@
 {
   "dev": {
-    "apigateway_description": "Handel-created Zappa app for zappa-flask",
+    "app_function": "index.app",
     "aws_environment_variables": {
       "TEST_ENV_VAR": "helloworld",
       "BUCKET_BUCKET_NAME": "zappa-flask-dev-bucket-s3",
@@ -11,37 +11,11 @@
       "HANDEL_ENVIRONMENT_NAME": "dev",
       "HANDEL_SERVICE_NAME": "webapp",
       "HANDEL_PARAMETER_STORE_PREFIX": "zappa-flask.dev",
+      "HANDEL_PARAMETER_STORE_PATH": "/zappa-flask/dev/",
       "HANDEL_REGION_NAME": "us-west-2"
     },
     "aws_region": "us-west-2",
-    "cloud_watch_log_level": "OFF",
-    "delete_local_zip": true,
-    "delete_s3_zip": false,
-    "keep_warm": true,
-    "lambda_description": "Handel-created Zappa app for zappa-flask",
-    "lambda_handler": "index.app",
-    "log_level": "DEBUG",
-    "manage_roles": false,
-    "memory_size": 128,
     "project_name": "zappa-flask",
-    "role_arn": "arn:aws:iam::398230616010:role/services/zappa-flask-dev-webapp",
-    "runtime": "python3.6",
-    "s3_bucket": "zappa-uploads-us-west-2-398230616010",
-    "tags": {
-      "app": "zappa-flask",
-      "env": "dev"
-    },
-    "timeout_seconds": 60,
-    "use_precompiled_packages": true,
-    "vpc_config": {
-      "SubnetIds": [
-        "subnet-049cb73300e3eca1b",
-        "subnet-0ceda47fdae4151b3",
-        "subnet-0c19809d9703d9208"
-      ],
-      "SecurityGroupIds": [
-        "sg-02e4ed44dd51f1479"
-      ]
-    }
+    "s3_bucket": "zappa-uploads-us-west-2-398230616010"
   }
 }

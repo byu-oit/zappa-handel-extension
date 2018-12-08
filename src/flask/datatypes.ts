@@ -29,27 +29,27 @@ export interface ZappaConfig extends ServiceConfig {
 
 // Note: this interface only includes the settings we use in Handel
 export interface ZappaSettingsFile {
-    apigateway_description: string;
+    // apigateway_description: string;
+    app_function: string;
     aws_environment_variables: EnvironmentVariables; // TODO - What is the diffference between environment_variables and aws_environment_variables?
     aws_region: string;
-    // TODO - Add custom domains via Route53
-    cloud_watch_log_level: string; // Enum
-    delete_local_zip: boolean;
-    delete_s3_zip: boolean;
-    keep_warm: boolean;
-    lambda_description: string;
-    lambda_handler: string;
-    log_level: string; // Enum
-    manage_roles: boolean;
-    memory_size: number;
+    // // TODO - Add custom domains via Route53
+    // cloud_watch_log_level: string; // Enum
+    // delete_local_zip: boolean;
+    // delete_s3_zip: boolean;
+    // keep_warm: boolean;
+    // lambda_description: string;
+    // log_level: string; // Enum
+    // manage_roles: boolean;
+    // memory_size: number;
     project_name: string;
-    role_arn: string;
-    runtime: string;
+    // role_arn: string;
+    // runtime: string;
     s3_bucket: string;
-    tags: Tags;
-    timeout_seconds: number;
-    use_precompiled_packages: boolean;
-    vpc_config?: ZappaSettingsVpcConfig;
+    // tags: Tags;
+    // timeout_seconds: number;
+    // use_precompiled_packages: boolean;
+    // vpc_config?: ZappaSettingsVpcConfig;
 }
 
 export interface ZappaSettingsVpcConfig {

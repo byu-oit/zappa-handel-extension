@@ -29,11 +29,9 @@ export async function zappaExists(): Promise<boolean> {
 export async function zappaDeploymentExists(environmentName: string): Promise<boolean> {
     try {
         await util.runCommand('zappa', ['status', environmentName]);
-        console.log("Exists"); // TODO - REMOVE LATER
         return true;
     }
     catch(err) {
-        console.log("Not Exists"); // TODO - REMOVE LATER
         return false;
     }
 }
@@ -41,15 +39,16 @@ export async function zappaDeploymentExists(environmentName: string): Promise<bo
 export async function deployEnv(environmentName: string): Promise<void> {
     const update = await zappaDeploymentExists(environmentName);
     if(update) { // Update
-        console.log("Update"); // TODO - REMOVE LATER
         await util.runCommand('zappa', ['update', environmentName], true, true);
     }
     else { // Create
-        console.log("Create"); // TODO - REMOVE LATER
         await util.runCommand('zappa', ['deploy', environmentName], true, true);
     }
 }
 
 export async function deleteEnv(environmentName: string): Promise<void> {
-    await util.runCommand('zappa', ['undeploy', environmentName, '--yes'], true, true);
+    const shouldDelete = await zappaDeploymentExists(environmentName);
+    if(shouldDelete) {
+        await util.runCommand('zappa', ['undeploy', environmentName, '--yes'], true, true);
+    }
 }

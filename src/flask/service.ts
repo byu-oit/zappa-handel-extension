@@ -103,16 +103,12 @@ export class FlaskService implements ServiceDeployer {
     }
 
     public async unDeploy(ownServiceContext: ServiceContext<ZappaConfig>): Promise<UnDeployContext> {
-
         await this.ensureZappaExists();
         console.log('UnDeploying Zappa application');
         const environmentName = 'dev'; // TODO - FILL THIS IN
-        const shouldDelete = await zappa.zappaDeploymentExists(environmentName);
-        if(shouldDelete) {
-            await zappa.deleteEnv(environmentName);
-        }
-        console.log('Finished undeploying Zappa application');
-        return new UnDeployContext(ownServiceContext);
+        await zappa.deleteEnv(environmentName);
+        // TODO - MAKE THIS NEXT SECTION QUITE A BIT LONGER TIMEOUT
+        return deletePhases.unDeployService(ownServiceContext, SERVICE_NAME);
     }
 
     public async unPreDeploy(ownServiceContext: ServiceContext<ZappaConfig>): Promise<UnPreDeployContext> {
