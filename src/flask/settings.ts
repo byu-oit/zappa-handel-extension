@@ -52,7 +52,7 @@ export async function createSettingsFile(
         lambda_description: description,
         log_level: 'DEBUG',
         manage_roles: false,
-        memory_size: serviceConfig.memory || 256,
+        memory_size: serviceConfig.memory || 128,
         project_name: projectName,
         role_arn: roleArn,
         runtime: serviceConfig.runtime || 'python3.6',
