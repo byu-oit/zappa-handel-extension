@@ -4,7 +4,8 @@
         "Action": [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
-            "logs:PutLogEvents"
+            "logs:DescribeLogStreams",
+            "logs:FilterLogEvents"
         ],
         "Resource": [
             "arn:aws:logs:*:*:*"
@@ -13,11 +14,10 @@
     {
         "Effect": "Allow",
         "Action": [
-            "lambda:InvokeAsync",
             "lambda:InvokeFunction"
         ],
         "Resource": [
-            "{{{ownLambdaArn}}}"
+            "{{ownLambdaArn}}"
         ]
     }
 ]

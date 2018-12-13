@@ -16,6 +16,7 @@ Resources:
               Service:
               - "lambda.amazonaws.com"
               - "events.amazonaws.com"
+              - "apigateway.amazonaws.com"
             Action:
             - "sts:AssumeRole"
   Policy:

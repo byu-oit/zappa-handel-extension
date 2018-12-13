@@ -31,17 +31,20 @@ import {
 } from 'handel-extension-support';
 import { ZappaConfig } from './datatypes';
 
-function getLambdaArn(accountConfig: AccountConfig, resourceName: string) {
-    return `arn:aws:lambda:${accountConfig.region}:${accountConfig.account_id}:function:${resourceName}`;
+function getLambdaArn(
+    accountConfig: AccountConfig,
+    projectName: string,
+    environmentName: string
+) {
+    return `arn:aws:lambda:${accountConfig.region}:${accountConfig.account_id}:function:${projectName}-${environmentName}`;
 }
 
 async function getPolicyStatementsForRole(
     serviceContext: ServiceContext<ZappaConfig>,
-    dependenciesDeployContexts: DeployContext[],
-    resourceName: string
+    dependenciesDeployContexts: DeployContext[]
 ): Promise<any[]> {
     const handlebarsParams = {
-        ownLambdaArn: getLambdaArn(serviceContext.accountConfig, resourceName)
+        ownLambdaArn: getLambdaArn(serviceContext.accountConfig, serviceContext.appName, serviceContext.environmentName)
     };
     let compiledTemplate;
     if (serviceContext.params.vpc) {
@@ -60,7 +63,7 @@ export async function deployManagedTemplate(
     const serviceName = ownServiceContext.resourceName();
     const handlebarsParams = {
         serviceName: serviceName,
-        policyStatements: await getPolicyStatementsForRole(ownServiceContext, dependenciesDeployContexts, serviceName)
+        policyStatements: await getPolicyStatementsForRole(ownServiceContext, dependenciesDeployContexts)
     };
     const stackName = ownServiceContext.stackName();
     const compiledTemplate = await handlebars.compileTemplate(`${__dirname}/app-resources.yml`, handlebarsParams);

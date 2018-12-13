@@ -4,7 +4,8 @@
         "Action": [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
-            "logs:PutLogEvents"
+            "logs:DescribeLogStreams",
+            "logs:FilterLogEvents"
         ],
         "Resource": [
             "arn:aws:logs:*:*:*"
@@ -13,22 +14,30 @@
     {
         "Effect": "Allow",
         "Action": [
-            "ec2:CreateNetworkInterface", 
-            "ec2:DescribeNetworkInterfaces",
-            "ec2:DeleteNetworkInterface"
+            "lambda:InvokeFunction"
         ],
         "Resource": [
-            "*"
+            "{{ownLambdaArn}}"
         ]
     },
     {
         "Effect": "Allow",
         "Action": [
-            "lambda:InvokeAsync",
-            "lambda:InvokeFunction"
+            "ec2:DescribeSecurityGroups",
+            "ec2:DescribeSubnets",
+            "ec2:DescribeVpcs",
+            "ec2:DescribeVpcsRequest",
+            "ec2:AttachNetworkInterface",
+            "ec2:CreateNetworkInterface",
+            "ec2:DeleteNetworkInterface",
+            "ec2:DescribeInstances",
+            "ec2:DescribeNetworkInterfaces",
+            "ec2:DetachNetworkInterface",
+            "ec2:ModifyNetworkInterfaceAttribute",
+            "ec2:ResetNetworkInterfaceAttribute"
         ],
         "Resource": [
-            "{{{ownLambdaArn}}}"
+            "*"
         ]
     }
 ]

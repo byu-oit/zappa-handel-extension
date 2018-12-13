@@ -24,7 +24,12 @@ import {
     UnDeployContext,
     UnPreDeployContext
 } from 'handel-extension-api';
-import { awsCalls, checkPhase, deletePhases, deployPhase, preDeployPhase, tagging } from 'handel-extension-support';
+import {
+    awsCalls,
+    checkPhase,
+    deletePhases,
+    preDeployPhase,
+} from 'handel-extension-support';
 import * as appResources from './app-resources';
 import { ZappaConfig } from './datatypes';
 import * as settings from './settings';

@@ -14,9 +14,19 @@
  * limitations under the License.
  *
  */
-import { DeployContext, PreDeployContext, ServiceContext } from 'handel-extension-api';
-import { deployPhase, tagging } from 'handel-extension-support';
-import { ZappaConfig, ZappaSettingsFile } from './datatypes';
+import {
+    DeployContext,
+    PreDeployContext,
+    ServiceContext
+} from 'handel-extension-api';
+import {
+    deployPhase,
+    tagging
+} from 'handel-extension-support';
+import {
+    ZappaConfig,
+    ZappaSettingsFile
+} from './datatypes';
 import * as util from './util';
 
 export async function createSettingsFile(
@@ -31,32 +41,32 @@ export async function createSettingsFile(
     const projectName = serviceContext.appName;
     const description = `Handel-created Zappa app for ${projectName}`;
     const environmentSettings: ZappaSettingsFile = {
-        // apigateway_description: description,
+        apigateway_description: description,
         app_function: serviceConfig.handler,
         aws_environment_variables: deployPhase.getEnvVarsForDeployedService(serviceContext, dependenciesDeployContexts, serviceConfig.environment_variables),
         aws_region: accountConfig.region,
-        // cloud_watch_log_level: 'OFF', // TODO - Fill this in
-        // delete_local_zip: true,
-        // delete_s3_zip: false,
-        // keep_warm: true,
-        // lambda_description: description,
-        // log_level: 'DEBUG',
-        // manage_roles: false,
-        // memory_size: serviceConfig.memory || 256,
+        cloud_watch_log_level: 'OFF', // TODO - Fill this in
+        delete_local_zip: true,
+        delete_s3_zip: false,
+        keep_warm: true,
+        lambda_description: description,
+        log_level: 'DEBUG',
+        manage_roles: false,
+        memory_size: serviceConfig.memory || 256,
         project_name: projectName,
-        // role_arn: roleArn,
-        // runtime: serviceConfig.runtime || 'python3.6',
+        role_arn: roleArn,
+        runtime: serviceConfig.runtime || 'python3.6',
         s3_bucket: s3BucketName,
-        // tags: tagging.getTags(serviceContext),
-        // timeout_seconds: serviceConfig.timeout || 30,
-        // use_precompiled_packages: true
+        tags: tagging.getTags(serviceContext),
+        timeout_seconds: serviceConfig.timeout || 30,
+        use_precompiled_packages: true
     };
-    // if(serviceConfig.vpc) {
-    //     environmentSettings.vpc_config = {
-    //         SubnetIds: accountConfig.private_subnets,
-    //         SecurityGroupIds: [preDeployContext.securityGroups[0].GroupId!]
-    //     };
-    // }
+    if(serviceConfig.vpc) {
+        environmentSettings.vpc_config = {
+            SubnetIds: accountConfig.private_subnets,
+            SecurityGroupIds: [preDeployContext.securityGroups[0].GroupId!]
+        };
+    }
 
     // Settings files have one or more environments with settings for each environment
     const settingsFile =  {
