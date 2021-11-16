@@ -15,7 +15,7 @@
     "handel": "*"
   },
   "dependencies": {
-    "aws-sdk": "^2.266.1",
+    "aws-sdk": "^2.814.0",
     "change-case": "^3.0.2",
     "handel-extension-api": "^0.33.2",
     "handel-extension-support": "^0.33.2"
